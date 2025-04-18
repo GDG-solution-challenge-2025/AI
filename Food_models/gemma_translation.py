@@ -35,7 +35,6 @@ def _load_gemma_model():
         # token=True 또는 환경 변수 HUGGING_FACE_HUB_TOKEN 설정 필요할 수 있음
         tokenizer = AutoTokenizer.from_pretrained(MODEL_ID, token=TOKEN) # 필요시 token=True 추가
     except Exception as e:
-        print("겜마로드드",e)
         return False
 
     # 모델 로드
@@ -50,7 +49,6 @@ def _load_gemma_model():
         )
         model_device = next(model.parameters()).device # 모델이 로드된 실제 장치 확인
     except Exception as e:
-        print("겜마로드드드드",e)
         # 실패 시 전역 변수 초기화
         model = None
         tokenizer = None
