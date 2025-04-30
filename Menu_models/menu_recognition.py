@@ -22,8 +22,14 @@ def recognize_menu(image_path):
     response = model.generate_content([prompt, image])
 
     food_name = response.text.strip()
-    print(f"{food_name}")
-    return food_name
+    food_kor= food_name.split('\n\n')[0]
+    food_eng= food_name.split('\n\n')[1]
+    food_kor = food_kor.replace('\n','\n`---___###@@@\n')
+    food_eng = food_eng.replace('\n','\n`---___###@@@\n')
+
+    food = food_kor + '\n@@ko/eng@@\n'+ food_eng
+    print(f"{food}")
+    return food
 
 
 

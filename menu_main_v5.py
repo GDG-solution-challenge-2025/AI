@@ -19,10 +19,10 @@ except Exception as e:
 
 
 
-food = menu.split('\n')  # 음식 리스트 생성
+food = menu.split('\n`---___###@@@\n')  # 음식 리스트 생성
 
 while True:
-    input_food_name = input("음식 이름: ")      #백엔드에서 음식이름 입력력
+    input_food_name = input("음식 이름: ")      #백엔드에서 음식이름 입력
     if input_food_name in food:
         food_name = input_food_name
         break
@@ -32,11 +32,18 @@ while True:
     
 
 try:
-
+    explanation=''
+    translation = ''
     if food_name:
         # 2단계: 음식 설명 (Gemma 사용)
-        explanation = explain_food_gemma(food_name)
-        translation = trans_eng(explanation)
+        exp_type = ['어떤 맛인지','유래','먹는 방법', '일반적으로 들어가는 재료(뭘로 만들었는지)(단어 나열식으로)']
+        for ex in exp_type:
+            expl = explain_food_gemma(food_name, ex)
+            trans = trans_eng(expl)
+            expl += '\n`---___###@@@\n'
+            trans += '\n`---___###@@@\n'
+            explanation += expl
+            translation += trans
         print(explanation)
         print(translation)
 

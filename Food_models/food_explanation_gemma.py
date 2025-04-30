@@ -70,7 +70,7 @@ def _load_gemma_model():
 
     return True
 
-def explain_food_gemma(food_name):
+def explain_food_gemma(food_name, exp_type):
     """
     주어진 음식 이름에 대해 Gemma 모델을 사용하여 설명을 생성합니다.
 
@@ -87,15 +87,17 @@ def explain_food_gemma(food_name):
         if not _load_gemma_model():
             return "오류: Gemma 모델을 로드할 수 없습니다."
 
-
-    # Gemma Instruction-Tuned 모델에 맞는 프롬프트 형식 생성
-    prompt_text = f"""
-    '{food_name}'에 대해 아래 내용을 각각 2문장 정도씩의 문단으로 구성해서 순서대로 총 네문단으로 설명해줘 아래 내용 외에는 따로 추가할 내용 없어도 괜찮아아:
-    - 어떤 맛인지
-    - 유래
-    - 먹는 방법법
-    - 일반적으로 들어가는 재료(뭘로 만들었는지)(단어 나열식으로)
-    """
+    if exp_type == '일반적으로 들어가는 재료(뭘로 만들었는지)(단어 나열식으로)':
+        # Gemma Instruction-Tuned 모델에 맞는 프롬프트 형식 생성
+        prompt_text = f"""
+        '{food_name}'에 대해 {exp_type}에 대해 알려줘 다른거 추가하지 말고 그냥 엔터로만 구분해줘. 그 외에는 따로 내용 추가하지 않아도 괜찮아:
+        """
+    else:
+        # Gemma Instruction-Tuned 모델에 맞는 프롬프트 형식 생성
+        prompt_text = f"""
+        '{food_name}'에 대해 {exp_type}에 대해서 2문장 정도로로 문단으로 구성해서 설명해줘 그 외에는 따로 내용 추가하지 않아도 괜찮아아:
+        """
+    
     chat = [
         {"role": "user", "content": prompt_text}
     ]

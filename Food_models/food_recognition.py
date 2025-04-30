@@ -32,7 +32,7 @@ def recognize_food(image_path):
     name_kor = food_name.split('\n')[0]
     name_eng = food_name.split('\n')[1]
     name_pron = food_name.split('\n')[2]
-    print(f"{name_kor}//?!@FOODING@!?// {name_eng}//?!@FOODING@!?// {name_pron}//?!@FOODING@!?//")
+    print(f"{name_kor}\n`---___###@@@\n {name_eng}\n`---___###@@@\n {name_pron}\n`---___###@@@\n")
     print('\n\n')
     return name_kor
 

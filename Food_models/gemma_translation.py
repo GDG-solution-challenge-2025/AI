@@ -76,7 +76,7 @@ def trans_eng(explanation):
 
 
     prompt_text = f"""
-    '{explanation}'을 영어로 그래도 번역해줘
+    '{explanation}'을 영어로 그대로 번역해줘. 다른 말 추가하지 말고 번역한 글만 줘줘
     """
 
 
