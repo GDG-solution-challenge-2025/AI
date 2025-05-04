@@ -70,7 +70,7 @@ def _load_gemma_model():
 
     return True
 
-def explain_food_gemma(food_name, exp_type):
+def explain_food_gemma(food_name, exp_type, food_info, food_list):
     """
     주어진 음식 이름에 대해 Gemma 모델을 사용하여 설명을 생성합니다.
 
@@ -87,17 +87,23 @@ def explain_food_gemma(food_name, exp_type):
         if not _load_gemma_model():
             return "오류: Gemma 모델을 로드할 수 없습니다."
 
-    if exp_type == '일반적으로 들어가는 재료(뭘로 만들었는지)(단어 나열식으로)':
-        # Gemma Instruction-Tuned 모델에 맞는 프롬프트 형식 생성
+    if exp_type == '일반적으로 들어가는 재료(단어 나열식으로)':
         prompt_text = f"""
-        '{food_name}'에 대해 {exp_type}에 대해 알려줘 다른거 추가하지 말고 그냥 엔터로만 구분해줘. 그 외에는 따로 내용 추가하지 않아도 괜찮아:
+        '{food_name}'에 대해 {exp_type}에 대해 알려줘 따로 추가설명,참고 적지말고 그냥 엔터로만 구분해줘. 그 외에는 따로 내용 추가하지 않아도 괜찮아:
+        """
+    elif exp_type == '1':
+        prompt_text = f"""
+        '{food_list}'중에 {food_info}중 해당하는 것과 {food_info}중에 하나로 만들 수 있는 {food_info}를 모두 엔터로 구분해서 단어 나열식으로로 출력해줘:
+        """
+    elif exp_type == '유래(확실치 않으면 그냥 확실하지 않다고 답변)':
+        prompt_text = f"""
+        '{food_name}'에 대해 {exp_type}에 대해서 따로 추가설명,참고 적지말고 3~4문장 정도로 구성해서 설명해줘. 정확하지 않은 답변일 경우 반드시 정확하지 않다고만 말해줘:
         """
     else:
-        # Gemma Instruction-Tuned 모델에 맞는 프롬프트 형식 생성
         prompt_text = f"""
-        '{food_name}'에 대해 {exp_type}에 대해서 2문장 정도로로 문단으로 구성해서 설명해줘 그 외에는 따로 내용 추가하지 않아도 괜찮아아:
-        """
-    
+        '{food_name}'에 대해 {exp_type}에 대해서 따로 추가설명,참고 적지말고고 3~4문장 정도로 구성해서 설명해줘:
+        """   
+
     chat = [
         {"role": "user", "content": prompt_text}
     ]

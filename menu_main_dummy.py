@@ -9,15 +9,68 @@ from Food_models.gemma_translation import trans_eng
 
 
 image_path = input('파일 경로:' )
+food_info=input('못먹는 음식 정보: ')
 
+menu = '''숯불소갈비
+`---___###@@@
+숯불돼지갈비
+`---___###@@@
+숯불삼겹살
+`---___###@@@
+숯불모둠구이
+`---___###@@@
+한우샤브샤브
+`---___###@@@
+채소샤브샤브
+`---___###@@@
+고기추가
+`---___###@@@
+돼지김치찜
+`---___###@@@
+소갈비찜
+`---___###@@@
+묵은지찜
+`---___###@@@
+돼지찌개
+`---___###@@@
+소주/맥주
+`---___###@@@
+막걸리
+`---___###@@@
+음료수
+@@ko/eng@@
+Charcoal Grilled Beef Ribs
+`---___###@@@
+Charcoal Grilled Pork Ribs
+`---___###@@@
+Charcoal Grilled Pork Belly
+`---___###@@@
+Charcoal Grilled Assorted Meats
+`---___###@@@
+Hanwoo Shabu-Shabu
+`---___###@@@
+Vegetable Shabu-Shabu
+`---___###@@@
+Additional Meat
+`---___###@@@
+Pork Kimchi Stew
+`---___###@@@
+Beef Short Rib Stew
+`---___###@@@
+Aged Kimchi Stew
+`---___###@@@
+Pork Stew
+`---___###@@@
+Soju/Beer
+`---___###@@@
+Makgeolli (Korean rice wine)
+`---___###@@@
+Soft Drinks'''     #dummy data
 
-menu = '김치찌개\n떡볶이\n김밥\n\nkimchijjigae\ntteokbbokki\ngimbap'     #dummy data
-
-food = menu.split('\n')  # 음식 리스트 생성
 
 while True:
-    input_food_name = input("음식 이름: ")      #백엔드에서 음식이름 입력력
-    if input_food_name in food:
+    input_food_name = input("음식 이름: ")      #백엔드에서 음식이름 입력
+    if input_food_name:
         food_name = input_food_name
         break
     else:
@@ -29,8 +82,42 @@ try:
 
     if food_name:
         # 2단계: 음식 설명 (Gemma 사용)
-        explanation = "김치찌개는 한국의 대표적인 찌개 요리로, 매콤하면서도 시원한 맛이 특징입니다. 묵은지를 주재료로 하여 깊은 맛과 함께 밥과 함께 먹기 좋습니다. \n\n김치찌개는 한국의 전통적인 음식으로, 17세기 말부터 시작된 것으로 추정됩니다. 당시에는 김치와 돼지고기가 함께 먹는 풍습이 있었고, 이를 바탕으로 김치찌개의 기본적인 맛이 형성되었습니다.\n\n김치찌개는 다양한 재료를 활용하여 만들 수 있으며, 밥과 함께 먹으면 더욱 맛있습니다.\n\n묵은지\n돼지고기 (목살, 삼겹살 등)\n두부\n양파\n대파\n청양고추 (선택 사항)\n멸치\n다시마\n고사리 (선택 사항)"
-        translation = "Kimchi stew is a quintessential Korean stew, known for its spicy and refreshing flavor. It's a staple for serving with rice, and it's a dish that's particularly delicious when enjoyed with rice.\n\nKimchi stew has been a traditional Korean dish since the 17th century, with its origins traced back to the late 18th century. During that time, a custom of eating kimchi and pork together was prevalent, which significantly shaped the basic flavor of kimchi stew.\n\nYou can use a variety of ingredients to make kimchi stew, and it tastes even better when served with rice.\n\nKimchi\nPork (such as pork belly or pork shoulder)\nTofu\nOnion\nGreen onion\nChili peppers (optional)\nDried kelp (also known as dried seaweed)\nGosari (optional)"
+        explanation = '''숯불소갈비는 달콤하고 짭짤한 맛이 조화롭게 어우러져 밥반찬으로도 좋고, 술안주로도 훌륭한 음식입니다. 숯불에 구워내어 풍미가 깊어지는 소갈비
+는 남녀노소 누구나 좋아하는 맛을 선호하는 메뉴입니다.
+`---___###@@@
+숯불소갈비는 조선시대 궁중에서 유행했던 음식으로, 숯불에 구워 먹는 소갈비는 당시 귀족들의 고급 음식이었으며, 숯불의 향연을 연상시키는 풍미가 특징입니다. 이후 한국전통 음식으로 자리 잡으면서, 지역별로 다양한 방식으로 발전하여 오늘날의 대표적인 음식으로 자리 잡았습니다.
+`---___###@@@
+숯불소갈비는 숯불에 구워 먹는 대표적인 음식으로, 얇게 썬 소갈비를 숯불에 구워 겉은 바삭하고 속은 촉촉하게 즐길 수 있습니다. 쌈 채소, 쌈장,  쌈김치 등과 함께 곁들여 먹으면 더욱 맛있습니다.
+`---___###@@@
+*   소고기 (다리살, 목살, 등심 등)
+*   양파
+*   대파
+*   마늘
+*   청양고추
+*   물
+*   설탕
+*   소금
+*   후추
+*   참기름
+*   식용유
+`---___###@@@'''
+        translation = '''Grilled barbecue ribs have a sweet and savory flavor that blends harmoniously, making them a great side dish for rice and also a wonderful appetizer for drinks. The flavorful ribs, cooked over an open flame, develop a rich taste when grilled. This dish is a favorite among both men and women, appealing to everyone who enjoys a taste that is universally liked.
+`---___###@@@
+Charcoal-grilled ribs were a popular dish in the Joseon Dynasty, a luxury food enjoyed by the aristocracy and characterized by the aroma of a bonfire. As it became a traditional Korean dish, it evolved regionally and is now a representative food in Korea today.
+`---___###@@@
+Grilled ribs are a popular dish that is grilled and enjoyed by eating thinly sliced beef. They are crispy on the outside and juicy on the inside. They are often served with kimchi and kimchi dip and are more delicious when paired with it.
+`---___###@@@
+Beef (ribs, sirloin, heart)
+onions, scallions
+garlic
+chili peppers
+water
+sugar
+salt
+pepper
+sesame oil
+cooking oil
+`---___###@@@'''
         print(explanation)
         print(translation)
 
