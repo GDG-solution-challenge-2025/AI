@@ -2,6 +2,7 @@ from Food_models.food_recognition import recognize_food
 from Food_models.food_explanation_gemma import explain_food_gemma # Gemma 버전 함수 임포트
 from Food_models.gemma_translation import trans_eng
 import warnings
+
 warnings.filterwarnings("ignore")
 
 # C:\Users\kim1g\OneDrive\바탕 화면\GCU\sollution_challenge_git\AI\kc.jpeg
@@ -9,6 +10,7 @@ warnings.filterwarnings("ignore")
 # 이미지 경로
 image_path = input("파일 경로: ")
 # print(image_path)
+
 
 try:
     # 1단계: 음식 인식 (Gemini Vision 사용) 

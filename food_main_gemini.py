@@ -1,6 +1,6 @@
 from Food_models.food_recognition import recognize_food
-from Food_models.food_explanation_gemma import explain_food_gemma # Gemma 버전 함수 임포트
-from Food_models.gemma_translation import trans_kor
+from Food_models.food_explanation_gemini import explain_food_gemini # Gemma 버전 함수 임포트
+from Food_models.gemini_translation import trans_kor, trans_eng
 import warnings
 import sys
 sys.stdout.reconfigure(encoding='utf-8')
@@ -27,22 +27,22 @@ try:
         exp_type = ['어떤 맛인지','유래','먹는 방법', '일반적으로 들어가는 재료', '1']
         for ex in exp_type:
             if ex == '일반적으로 들어가는 재료':
-                expl = explain_food_gemma(food_name, ex, food_info, food_list)
+                expl = explain_food_gemini(food_name, ex, food_info, food_list)
                 food_list = expl
-                trans = trans_kor(expl)
+                trans = trans_eng(expl)
                 expl += '\n`---___###@@@\n'
                 trans += '\n`---___###@@@\n'
                 explanation += expl
                 translation += trans
             else:
-                expl = explain_food_gemma(food_name, ex, food_info, food_list)
-                trans = trans_kor(expl)
+                expl = explain_food_gemini(food_name, ex, food_info, food_list)
+                trans = trans_eng(expl)
                 expl += '\n`---___###@@@\n'
                 trans += '\n`---___###@@@\n'
                 explanation += expl
                 translation += trans
-        print(translation)
         print(explanation)
+        print(translation)
 
         
 

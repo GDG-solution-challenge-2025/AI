@@ -4,6 +4,8 @@
 from Menu_models.menu_recognition import recognize_menu
 from Food_models.food_explanation_gemma import explain_food_gemma # Gemma 버전 함수 임포트
 from Food_models.gemma_translation import trans_eng
+import sys
+sys.stdout.reconfigure(encoding='utf-8')
 
 # C:\Users\kim1g\OneDrive\바탕 화면\GCU\sollution_challenge_git\AI\menu.png
 
@@ -89,17 +91,17 @@ try:
 `---___###@@@
 숯불소갈비는 숯불에 구워 먹는 대표적인 음식으로, 얇게 썬 소갈비를 숯불에 구워 겉은 바삭하고 속은 촉촉하게 즐길 수 있습니다. 쌈 채소, 쌈장,  쌈김치 등과 함께 곁들여 먹으면 더욱 맛있습니다.
 `---___###@@@
-*   소고기 (다리살, 목살, 등심 등)
-*   양파
-*   대파
-*   마늘
-*   청양고추
-*   물
-*   설탕
-*   소금
-*   후추
-*   참기름
-*   식용유
+소고기 (다리살, 목살, 등심 등)
+양파
+대파
+마늘
+청양고추
+물
+설탕
+소금
+후추
+참기름
+식용유
 `---___###@@@'''
         translation = '''Grilled barbecue ribs have a sweet and savory flavor that blends harmoniously, making them a great side dish for rice and also a wonderful appetizer for drinks. The flavorful ribs, cooked over an open flame, develop a rich taste when grilled. This dish is a favorite among both men and women, appealing to everyone who enjoys a taste that is universally liked.
 `---___###@@@

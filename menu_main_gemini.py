@@ -1,6 +1,6 @@
 from Menu_models.menu_recognition import recognize_menu
-from Food_models.food_explanation_gemma import explain_food_gemma # Gemma 버전 함수 임포트
-from Food_models.gemma_translation import trans_kor
+from Food_models.food_explanation_gemini import explain_food_gemini # Gemma 버전 함수 임포트
+from Food_models.gemini_translation import trans_kor, trans_eng
 import sys
 sys.stdout.reconfigure(encoding='utf-8')
 # C:\Users\kim1g\OneDrive\바탕 화면\GCU\sollution_challenge_git\AI\menu.png
@@ -25,7 +25,7 @@ except Exception as e:
 food = menu.split('\n`---___###@@@\n')  # 음식 리스트 생성
 
 while True:
-    input_food_name = input("음식 이름: ")      #백엔드에서 음식이름 입력
+    input_food_name = input()      #백엔드에서 음식이름 입력
     if input_food_name in food:
         food_name = input_food_name
         break
@@ -43,22 +43,22 @@ try:
         exp_type = ['어떤 맛인지','유래','먹는 방법', '일반적으로 들어가는 재료', '1']
         for ex in exp_type:
             if ex == '일반적으로 들어가는 재료':
-                expl = explain_food_gemma(food_name, ex, food_info, food_list)
+                expl = explain_food_gemini(food_name, ex, food_info, food_list)
                 food_list = expl
-                trans = trans_kor(expl)
+                trans = trans_eng(expl)
                 expl += '\n`---___###@@@\n'
                 trans += '\n`---___###@@@\n'
                 explanation += expl
                 translation += trans
             else:
-                expl = explain_food_gemma(food_name, ex, food_info, food_list)
-                trans = trans_kor(expl)
+                expl = explain_food_gemini(food_name, ex, food_info, food_list)
+                trans = trans_eng(expl)
                 expl += '\n`---___###@@@\n'
                 trans += '\n`---___###@@@\n'
                 explanation += expl
                 translation += trans
-        print(translation)
         print(explanation)
+        print(translation)
 
 except Exception as e:
     print(f"처리 중 오류가 발생했습니다: {e}")

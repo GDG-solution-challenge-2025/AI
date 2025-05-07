@@ -1,8 +1,10 @@
 import google.generativeai as genai
 from PIL import Image
+import sys
+sys.stdout.reconfigure(encoding='utf-8')
 
 try:
-    genai.configure(api_key="AIzaSyB_ysaob2As98H5g6WaeKSzS8QFtLUZeiA")
+    genai.configure(api_key="AIzaSyADqOTHtn4yoEQOzPg_TQiZxdVhfcKeZSY")
 except ValueError as e:
     print(e)
     exit()
@@ -12,7 +14,7 @@ except Exception as e:
 
 
 def recognize_menu(image_path):
-    model = genai.GenerativeModel('gemini-1.5-pro-latest')
+    model = genai.GenerativeModel('gemini-2.0-flash')
 
     image = Image.open(image_path)
 

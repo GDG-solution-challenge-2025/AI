@@ -6,6 +6,8 @@
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
 import warnings
+import sys
+sys.stdout.reconfigure(encoding='utf-8')
 warnings.filterwarnings("ignore")
 
 # --- 설정 ---
@@ -57,7 +59,7 @@ def _load_gemma_model():
 
     return True
 
-def trans_eng(explanation):
+def trans_kor(explanation):
     """
     주어진 음식 이름에 대해 Gemma 모델을 사용하여 설명을 생성합니다.
 
@@ -76,7 +78,9 @@ def trans_eng(explanation):
 
 
     prompt_text = f"""
-    '{explanation}'을 영어로 그대로 번역해줘. 다른 말 추가하지 말고 번역한 글만 줘줘
+    '{explanation}'
+    
+    이 글을 한글로 그대로 번역해줘. 다른 말 추가하지 말고 번역한 글만 줘줘
     """
 
 
@@ -105,6 +109,55 @@ def trans_eng(explanation):
         print(f"❌ 텍스트 생성 중 에러: {e}")
         return f"'{explanation}'에 대한 설명을 생성하는 중 오류가 발생했습니다."
 
+def trans_eng(explanation):
+    """
+    주어진 음식 이름에 대해 Gemma 모델을 사용하여 설명을 생성합니다.
+
+    Args:
+        food_name (str): 설명할 음식의 이름.
+
+    Returns:
+        str: Gemma 모델이 생성한 음식 설명 텍스트, 또는 오류 메시지.
+    """
+    global model, tokenizer, model_device
+
+    # 모델/토크나이저가 로드되지 않았으면 로드 시도
+    if model is None or tokenizer is None:
+        if not _load_gemma_model():
+            return "오류: Gemma 모델을 로드할 수 없습니다."
+
+
+    prompt_text = f"""
+    '{explanation}'
+    
+    이 글을 전부 영어로 그대로 번역해줘. 다른 말 추가하지 말고 번역한 글만 줘줘
+    """
+
+
+
+    chat = [
+        {"role": "user", "content": prompt_text}
+    ]
+    # 채팅 템플릿 적용 (모델 입력 형식으로 변환)
+    gemma_prompt = tokenizer.apply_chat_template(chat, tokenize=False, add_generation_prompt=True)
+
+    inputs = tokenizer(gemma_prompt, return_tensors="pt").to(model_device)
+
+    # 텍스트 생성
+    try:
+        outputs = model.generate(
+            input_ids=inputs["input_ids"],
+            attention_mask=inputs["attention_mask"],
+            max_new_tokens=MAX_NEW_TOKENS,
+            do_sample=False,
+            pad_token_id=tokenizer.eos_token_id
+        )
+
+        explanation = tokenizer.decode(outputs[0][inputs["input_ids"].shape[1]:], skip_special_tokens=True).strip()
+        return explanation
+    except Exception as e:
+        print(f"❌ 텍스트 생성 중 에러: {e}")
+        return f"'{explanation}'에 대한 설명을 생성하는 중 오류가 발생했습니다."
 
 # if __name__ == "__main__":
 #     # 프로그램 시작 시 모델 로딩 시도
