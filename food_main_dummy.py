@@ -1,62 +1,80 @@
 #dummy
 
 from Food_models.food_recognition import recognize_food
-from Food_models.food_explanation_gemma import explain_food_gemma # Gemma 버전 함수 임포트
-from Food_models.gemma_translation import trans_eng
 import warnings
 import sys
 sys.stdout.reconfigure(encoding='utf-8')
 warnings.filterwarnings("ignore")
 
 # 테스트할 이미지 경로
-image_path = input("파일 경로: ")
-food_info=input('못먹는 음식 정보: ')
+image_path = input()
+food_info=input()
 
 try:
     # 1단계: 음식 인식 (Gemini Vision 사용)         
 
-    food_name = "김치찌개"                  # dummy data
+    food_name = "김밥"                  # dummy data
 
     if food_name:
         # 2단계: 음식 설명 dummy
-        explanation = '''숯불소갈비는 달콤하고 짭짤한 맛이 조화롭게 어우러져 밥반찬으로도 좋고, 술안주로도 훌륭한 음식입니다. 숯불에 구워내어 풍미가 깊어지는 소갈비
-는 남녀노소 누구나 좋아하는 맛을 선호하는 메뉴입니다.
+        explanation = '''
+김밥
 `---___###@@@
-숯불소갈비는 조선시대 궁중에서 유행했던 음식으로, 숯불에 구워 먹는 소갈비는 당시 귀족들의 고급 음식이었으며, 숯불의 향연을 연상시키는 풍미가 특징입니다. 이후 한국전통 음식으로 자리 잡으면서, 지역별로 다양한 방식으로 발전하여 오늘날의 대표적인 음식으로 자리 잡았습니다.
+ Kimbap
 `---___###@@@
-숯불소갈비는 숯불에 구워 먹는 대표적인 음식으로, 얇게 썬 소갈비를 숯불에 구워 겉은 바삭하고 속은 촉촉하게 즐길 수 있습니다. 쌈 채소, 쌈장,  쌈김치 등과 함께 곁들여 먹으면 더욱 맛있습니다.
+
+
+
+
+
+김밥은 밥과 시금치, 당근, 단무지, 계란, 그리고 햄이나 참치 등 다양한 재료를 김에 싸서 만든 음식입니다.  밥의 고소함과 다양한 재료들의 조화로 심심하면서도 맛있고, 간편하게 먹을 수 있는 맛입니다.
 `---___###@@@
-소고기 (다리살, 목살, 등심 등)
-양파
-대파
-마늘
-청양고추
-물
-설탕
+김밥의 정확한 유래는 명확하지 않지만, 일제강점기 시대 도시락 문화와 김에 밥을 싸 먹던 기존 한국의 식문화가 결합되어 자연스럽게 만들어진 것으로 추정됩니다.  김에 밥과 여러 재료를 싸 먹는 형태는 오래전부터 존재했으나, 현재와 같은 김밥 형태는 근대에 이르러서 완성된 것으로 보입니다.
+`---___###@@@
+김밥은 주로 간편한 식사 대용으로 먹습니다.  따로 밥과 함께 먹는 경우는 드물고, 김밥 자체가 밥과 여러 가지 재료가 들어있어 하나의 완성된 음식으로 취급됩니다.  국이나 다른  반찬과 함께 먹기도 하지만, 김밥만으로도 한 끼 식사가 됩니다.
+`---___###@@@
+밥
+김
+시금치
+당근
+단무지
+어묵
+계란 지단
+햄
 소금
-후추
 참기름
-식용유
-`---___###@@@'''
-        translation = '''Grilled barbecue ribs have a sweet and savory flavor that blends harmoniously, making them a great side dish for rice and also a wonderful appetizer for drinks. The flavorful ribs, cooked over an open flame, develop a rich taste when grilled. This dish is a favorite among both men and women, appealing to everyone who enjoys a taste that is universally liked.
+소고기 (선택)
+멸치 (선택)
+다시마 (선택)
+참깨 (선택)
 `---___###@@@
-Charcoal-grilled ribs were a popular dish in the Joseon Dynasty, a luxury food enjoyed by the aristocracy and characterized by the aroma of a bonfire. As it became a traditional Korean dish, it evolved regionally and is now a representative food in Korea today.
+없음
 `---___###@@@
-Grilled ribs are a popular dish that is grilled and enjoyed by eating thinly sliced beef. They are crispy on the outside and juicy on the inside. They are often served with kimchi and kimchi dip and are more delicious when paired with it.
+
+Kimbap is a food made by wrapping rice, spinach, carrots, pickled radish, egg, and various ingredients such as ham or tuna in seaweed.  It's a simple yet delicious taste with the fragrant rice and the harmony of various ingredients, and it's easy to eat.
 `---___###@@@
-Beef (ribs, sirloin, heart)
-onions, scallions
-garlic
-chili peppers
-water
-sugar
-salt
-pepper
-sesame oil
-cooking oil
+The exact origin of kimbap is unclear, but it is presumed to have been naturally created through a combination of the lunchbox culture during the Japanese colonial period and the existing Korean food culture of wrapping rice in seaweed. While the practice of wrapping rice and various ingredients in seaweed has existed for a long time, the current form of kimbap seems to have been completed in the modern era.
+`---___###@@@
+Kimbap is mainly eaten as a convenient meal replacement. It's rare to eat it with rice separately, as kimbap itself is considered a complete meal containing rice and various ingredients.  It is sometimes eaten with soup or other side dishes, but kimbap alone constitutes a full meal.
+`---___###@@@
+Rice
+Kim
+Spinach
+Carrot
+Pickled radish
+Fish cake
+Egg omelet
+Ham
+Salt
+Sesame oil
+Beef (optional)
+Dried anchovy (optional)
+Kelp (optional)
+Sesame (optional)
+`---___###@@@
+None
 `---___###@@@'''
         print(explanation)
-        print(translation)
 
         
 

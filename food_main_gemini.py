@@ -6,7 +6,7 @@ import sys
 sys.stdout.reconfigure(encoding='utf-8')
 warnings.filterwarnings("ignore")
 
-# C:\Users\kim1g\OneDrive\바탕 화면\GCU\sollution_challenge_git\AI\kc.jpeg
+# C:\Users\Administrator\Desktop\dev\AI\KB.jpg
 
 # 이미지 파일 경로
 image_path = input()
@@ -41,8 +41,8 @@ try:
                 trans += '\n`---___###@@@\n'
                 explanation += expl
                 translation += trans
-        print(explanation)
-        print(translation)
+        
+        print(food_name + explanation + translation)
 
         
 

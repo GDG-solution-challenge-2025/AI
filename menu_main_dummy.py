@@ -2,16 +2,14 @@
 
 
 from Menu_models.menu_recognition import recognize_menu
-from Food_models.food_explanation_gemma import explain_food_gemma # Gemma 버전 함수 임포트
-from Food_models.gemma_translation import trans_eng
 import sys
 sys.stdout.reconfigure(encoding='utf-8')
 
-# C:\Users\kim1g\OneDrive\바탕 화면\GCU\sollution_challenge_git\AI\menu.png
+# C:\Users\Administrator\Desktop\dev\AI\menu.jpg
 
 
-image_path = input('파일 경로:' )
-food_info=input('못먹는 음식 정보: ')
+image_path = input()
+food_info=input()
 
 menu = '''숯불소갈비
 `---___###@@@

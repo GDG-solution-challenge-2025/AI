@@ -19,7 +19,7 @@ def recognize_menu(image_path):
     image = Image.open(image_path)
 
     prompt = """
-    이 메뉴판의 음식 텍스트들을 모두 추출해서 엔터로 구분해서 줘 한국어로 된 메뉴만 한국어로 추출해줘 그리고 추출한 메뉴를 영어로 번역해서 그 밑에 같은 형식으로 출력해줘줘:
+    이 메뉴판의 음식명의 텍스트들을 모두 추출해서 엔터로 구분해서 줘. 한국어로 된 메뉴만 한국어로 추출해줘. 그리고 추출한 메뉴를 영어로 번역해서 그 밑에 같은 형식으로 출력해줘. 그 외의 추가적인 텍스트는 작성하지 말아줘:
     """
     response = model.generate_content([prompt, image])
 
@@ -30,6 +30,8 @@ def recognize_menu(image_path):
     food_eng = food_eng.replace('\n','\n`---___###@@@\n')
 
     food = food_kor + '\n@@ko/eng@@\n'+ food_eng
+    # print('---------------------------------------',food_kor)
+    # print('---------------------------------------',food_eng)
     print(f"{food}")
     return food
 

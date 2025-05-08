@@ -13,7 +13,7 @@ except Exception as e:
 
 
 def trans_kor(explanation):
-    model = genai.GenerativeModel('gemini-2.0-flash')
+    model = genai.GenerativeModel('gemini-1.5-flash')
 
     prompt = f"""
     '{explanation}'
@@ -27,7 +27,7 @@ def trans_kor(explanation):
     return expl
 
 def trans_eng(explanation):
-    model = genai.GenerativeModel('gemini-2.0-flash')
+    model = genai.GenerativeModel('gemini-1.5-flash')
 
     prompt = f"""
     '{explanation}'

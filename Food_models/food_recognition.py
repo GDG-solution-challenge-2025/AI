@@ -14,19 +14,18 @@ except Exception as e:
 
 
 def recognize_food(image_path):
-    model = genai.GenerativeModel('gemini-1.5-pro-latest')
+    model = genai.GenerativeModel('gemini-2.0-flash')
 
     image = Image.open(image_path)
 
     prompt = """
-    이 음식의 이름이 뭐야? 영어(발음기호까지지), 한국어로 각각 간단하게 하나의 단어로 알려줘.
+    이 음식의 이름이 뭐야? 영어, 한국어로 각각 간단하게 하나의 단어로 알려줘.
 
     형식은 아래 예시처럼 출력해줘:
 
     예시:
     떡볶이
     Tteokbokki
-    ˈtʌkˌbɑki
     """
     response = model.generate_content([prompt, image])
 
@@ -34,7 +33,7 @@ def recognize_food(image_path):
     name_kor = food_name.split('\n')[0]
     name_eng = food_name.split('\n')[1]
     name_pron = food_name.split('\n')[2]
-    print(f"{name_kor}\n`---___###@@@\n {name_eng}\n`---___###@@@\n {name_pron}\n`---___###@@@\n")
+    print(f"{name_kor}\n`---___###@@@\n {name_eng}\n`---___###@@@\n")
     print('\n\n')
     return name_eng
 

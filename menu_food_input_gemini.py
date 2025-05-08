@@ -3,36 +3,11 @@ from Food_models.food_explanation_gemini import explain_food_gemini # Gemma 버�
 from Food_models.gemini_translation import trans_kor, trans_eng
 import sys
 sys.stdout.reconfigure(encoding='utf-8')
-# C:\Users\kim1g\OneDrive\바탕 화면\GCU\sollution_challenge_git\AI\menu.png
+# C:\Users\Administrator\Desktop\dev\AI\menu.jpg
 
+food_name = input() 
 
-image_path = input()
-
-#못먹는 음식식 정보 input
 food_info = input()
-
-try:
-    # 1단계: 음식 인식 (Gemini Vision 사용)
-    menu = recognize_menu(image_path)     #gemini data
-
-except FileNotFoundError:
-    print(f"오류: 이미지 파일({image_path})을 찾을 수 없습니다. 경로를 확인하세요.")
-except Exception as e:
-    print(f"처리 중 오류가 발생했습니다: {e}")
-
-
-
-food = menu.split('\n`---___###@@@\n')  # 음식 리스트 생성
-
-while True:
-    input_food_name = input()      #백엔드에서 음식이름 입력
-    if input_food_name in food:
-        food_name = input_food_name
-        break
-    else:
-        print('Error: Invalid food name!!')
-
-    
 
 try:
     explanation=''
@@ -57,8 +32,7 @@ try:
                 trans += '\n`---___###@@@\n'
                 explanation += expl
                 translation += trans
-        print(explanation)
-        print(translation)
+        print(food_name+ '\n' + explanation + '\n' + translation)
 
 except Exception as e:
     print(f"처리 중 오류가 발생했습니다: {e}")
