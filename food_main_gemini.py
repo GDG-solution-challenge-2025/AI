@@ -18,7 +18,6 @@ food_info = input()
 
 try:
     # 1단계: 음식 인식 (Gemini Vision 사용) 
-
     food_name = recognize_food(image_path)            # gemini 답변
     explanation=''
     translation = ''
@@ -43,7 +42,7 @@ try:
                 explanation += expl
                 translation += trans
         
-        print(food_name + explanation + translation)
+        print(explanation +'\n'+ translation)
 
         
 

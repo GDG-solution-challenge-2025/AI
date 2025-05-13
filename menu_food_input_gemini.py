@@ -4,11 +4,10 @@ from Food_models.gemini_translation import trans_kor, trans_eng
 import sys
 import io
 sys.stdin = io.TextIOWrapper(sys.stdin.buffer, encoding='utf-8')
-# C:\Users\Administrator\Desktop\dev\AI\menu.jpg
 
-food_name = input() 
+food_name = input()     #소갈비
 
-food_info = input()
+food_info = input()     # 소고기, 콩
 
 try:
     explanation=''
