@@ -1,9 +1,10 @@
 import google.generativeai as genai
 import sys
+import os
 sys.stdout.reconfigure(encoding='utf-8')
 
 try:
-    genai.configure(api_key="AIzaSyADqOTHtn4yoEQOzPg_TQiZxdVhfcKeZSY")
+    genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 except ValueError as e:
     print(e)
     exit()
