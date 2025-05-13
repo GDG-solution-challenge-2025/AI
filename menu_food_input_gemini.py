@@ -2,7 +2,8 @@ from Menu_models.menu_recognition import recognize_menu
 from Food_models.food_explanation_gemini import explain_food_gemini # Gemma 버전 함수 임포트
 from Food_models.gemini_translation import trans_kor, trans_eng
 import sys
-sys.stdout.reconfigure(encoding='utf-8')
+import io
+sys.stdin = io.TextIOWrapper(sys.stdin.buffer, encoding='utf-8')
 # C:\Users\Administrator\Desktop\dev\AI\menu.jpg
 
 food_name = input() 
@@ -15,6 +16,8 @@ try:
     food_list = ''
     if food_name:
         # 2단계: 음식 설명 (Gemma 사용)
+        food_kor = trans_kor(food_name)
+        food_eng = trans_eng(food_name)
         exp_type = ['어떤 맛인지','유래','먹는 방법', '일반적으로 들어가는 재료', '1']
         for ex in exp_type:
             if ex == '일반적으로 들어가는 재료':
@@ -32,7 +35,7 @@ try:
                 trans += '\n`---___###@@@\n'
                 explanation += expl
                 translation += trans
-        print(food_name+ '\n' + explanation + '\n' + translation)
+        print(food_kor+ '\n`---___###@@@\n'+ food_eng+'\n`---___###@@@\n'+ '\n' + explanation + '\n' + translation)
 
 except Exception as e:
     print(f"처리 중 오류가 발생했습니다: {e}")

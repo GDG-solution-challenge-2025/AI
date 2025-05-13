@@ -2,7 +2,8 @@ from Menu_models.menu_recognition import recognize_menu
 from Food_models.food_explanation_gemini import explain_food_gemini # Gemma 버전 함수 임포트
 from Food_models.gemini_translation import trans_kor, trans_eng
 import sys
-sys.stdout.reconfigure(encoding='utf-8')
+import io
+sys.stdin = io.TextIOWrapper(sys.stdin.buffer, encoding='utf-8')
 # C:\Users\Administrator\Desktop\dev\AI\menu.jpg
 
 

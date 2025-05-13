@@ -3,7 +3,8 @@ from Food_models.food_explanation_gemini import explain_food_gemini # Gemma ë²„ì
 from Food_models.gemini_translation import trans_kor, trans_eng
 import warnings
 import sys
-sys.stdout.reconfigure(encoding='utf-8')
+import io
+sys.stdin = io.TextIOWrapper(sys.stdin.buffer, encoding='utf-8')
 warnings.filterwarnings("ignore")
 
 # C:\Users\Administrator\Desktop\dev\AI\KB.jpg
