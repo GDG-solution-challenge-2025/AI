@@ -17,8 +17,8 @@ image_path = input()
 food_info = input()
 
 try:
-    # 1단계: 음식 인식 (Gemini Vision 사용) 
-    food_name = recognize_food(image_path)            # gemini 답변
+    # 1단계: 음식 인식
+    food_name = recognize_food(image_path)            
     explanation=''
     translation = ''
     food_list = ''
