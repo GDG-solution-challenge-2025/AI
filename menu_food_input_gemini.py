@@ -14,7 +14,6 @@ try:
     translation = ''
     food_list = ''
     if food_name:
-        # 2단계: 음식 설명 (Gemma 사용)
         food_kor = trans_kor(food_name)
         food_eng = trans_eng(food_name)
         exp_type = ['어떤 맛인지','유래','먹는 방법', '일반적으로 들어가는 재료', '1']
