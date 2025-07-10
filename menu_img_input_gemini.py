@@ -13,7 +13,6 @@ image_path = input()
 # food_info = input()
 
 try:
-    # 1단계: 음식 인식 (Gemini Vision 사용)
     menu = recognize_menu(image_path)     #gemini data
 
 except FileNotFoundError:
